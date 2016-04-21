@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SingsteApp
+namespace Singste_App
 {
     public class ParseJson
     {

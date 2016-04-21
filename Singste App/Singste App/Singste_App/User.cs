@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SingsteApp
+namespace Singste_App
 {
-    class User
+    public class User
     {
         public string usrID;
         public string usrCH;
         public string phrase;
+        public int delay;
         public List<Appointment> storage = new List<Appointment>();
         public User() { }
         public User(string phrase, string chr)

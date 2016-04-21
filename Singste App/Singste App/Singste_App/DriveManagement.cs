@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SingsteApp
+namespace Singste_App
 {
-    abstract class DriveManagement
+    public abstract class DriveManagement
     {
         public virtual bool createDatabase(User current)
         {

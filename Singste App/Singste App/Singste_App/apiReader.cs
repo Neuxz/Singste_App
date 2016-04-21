@@ -5,9 +5,9 @@ using System.Text;
 using System.Net;
 using System.IO;
 
-namespace SingsteApp
+namespace Singste_App
 {
-    class apiConnector
+    public class apiConnector
     {
         public enum debug{
             Debug, NONdebug};
@@ -16,11 +16,11 @@ namespace SingsteApp
         private const string apiAnAbML = "&a=";
         private const string apiAnML = "n";
         private const string apiAbML = "b";
-        private DriveManagement dm;
+        private static DriveManagement dm;
         private static bool userExists;
         private User curent;
 
-        public bool UserExists
+        public static bool UserExists
         {
             get
             {
@@ -62,22 +62,15 @@ namespace SingsteApp
         }
 
         //Methods
-        public async System.Threading.Tasks.Task<bool> CheckLogIN()
+        public bool CheckLogIN()
         {
             bool returner = false;
             try
             {
-                HttpWebRequest myRequest =
-                 (HttpWebRequest)WebRequest.Create("http://" + curent.usrCH + api + curent.phrase);
-                using (WebResponse response = await myRequest.GetResponseAsync())
-                {
-                    using (System.IO.StreamReader reader = new System.IO.StreamReader(response.GetResponseStream()))
-                    {
-                        string debug = reader.ReadToEnd();
-                        returner = bool.Parse(debug);
-                    }
-                }
-                //Console.WriteLine(myRequest.);";
+                System.Threading.Tasks.Task<string> resi = getStringResponse((HttpWebRequest)WebRequest.Create("http://" + curent.usrCH + api + curent.phrase));
+                resi.Start();
+                resi.Wait();
+                returner = bool.Parse(resi.Result);
             }
             catch (Exception e)
             {
@@ -86,7 +79,10 @@ namespace SingsteApp
         }
         public string Anmelden(bool anmelden,string trmIF, out bool anmeldung)
         {
-            string result = getStringResponse((HttpWebRequest)WebRequest.Create("http://" + curent.usrCH + api + curent.phrase + apiTrmIDIS + trmIF + apiAnAbML + (anmelden?apiAnML:apiAbML)));
+            System.Threading.Tasks.Task < string > resi = getStringResponse((HttpWebRequest)WebRequest.Create("http://" + curent.usrCH + api + curent.phrase + apiTrmIDIS + trmIF + apiAnAbML + (anmelden?apiAnML:apiAbML)));
+            resi.Start();
+            resi.Wait();
+            string result = resi.Result;
 
             if (result.Contains("Neuer Status: angemeldet. Danke!"))
             {
@@ -98,7 +94,7 @@ namespace SingsteApp
                 anmeldung = false;
                 return "Du wurdest abgemeldet";
             }
-            else if (result.Contains("Abmelden ist nicht mehr möglich."))
+            else if (result.Contains("Der Termin liegt in der Vergangenheit. Keine Änderungen mehr möglich."))
             {
                 anmeldung = true;
                 return "Änderung nicht Möglich!";
@@ -127,11 +123,17 @@ namespace SingsteApp
         }
         public List<Appointment> getTermine()
         {
-            return LoadTermine((HttpWebRequest)WebRequest.Create("http://" + curent.usrCH + api + curent.phrase + apiTrmIDIS + "alle"));
+            System.Threading.Tasks.Task<List<Appointment>> lisi = LoadTermine((HttpWebRequest)WebRequest.Create("http://" + curent.usrCH + api + curent.phrase + apiTrmIDIS + "alle"));
+            lisi.Start();
+            lisi.Wait();
+            return lisi.Result;
         }
         public List<Appointment> getTermine(string trmId)
         {
-            return LoadTermine((HttpWebRequest)WebRequest.Create("http://" + curent.usrCH + api + curent.phrase + apiTrmIDIS + trmId));
+            System.Threading.Tasks.Task<List<Appointment>> lisi = LoadTermine((HttpWebRequest)WebRequest.Create("http://" + curent.usrCH + api + curent.phrase + apiTrmIDIS + trmId));
+            lisi.Start();
+            lisi.Wait();
+            return lisi.Result;
         }
         private async System.Threading.Tasks.Task<List<Appointment>> LoadTermine(HttpWebRequest myRequest)
         {
