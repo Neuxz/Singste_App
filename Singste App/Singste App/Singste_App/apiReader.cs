@@ -94,10 +94,10 @@ namespace Singste_App
                 anmeldung = false;
                 return "Du wurdest abgemeldet";
             }
-            else if (result.Contains("Der Termin liegt in der Vergangenheit. Keine Änderungen mehr möglich."))
+            else if (result.Contains("Der Termin liegt in der Vergangenheit. Keine Ã„nderungen mehr mÃ¶glich."))
             {
                 anmeldung = true;
-                return "Änderung nicht Möglich!";
+                return "Ã„nderung nicht MÃ¶glich!";
             }
             anmeldung = true;
             return "Netzwerk fehler.";
@@ -121,12 +121,10 @@ namespace Singste_App
                 return ec.ToString();
             }
         }
-        public List<Appointment> getTermine()
+        //Handle Async in *Form* and add method to handle async response like: task.ContinueWith(x => Console.WriteLine(x.Result));
+        public System.Threading.Tasks.Task<List<Appointment>> getTermine()
         {
-            System.Threading.Tasks.Task<List<Appointment>> lisi = LoadTermine((HttpWebRequest)WebRequest.Create("http://" + curent.usrCH + api + curent.phrase + apiTrmIDIS + "alle"));
-            lisi.Start();
-            lisi.Wait();
-            return lisi.Result;
+            return LoadTermine((HttpWebRequest)WebRequest.Create("http://" + curent.usrCH + api + curent.phrase + apiTrmIDIS + "alle"));
         }
         public List<Appointment> getTermine(string trmId)
         {
