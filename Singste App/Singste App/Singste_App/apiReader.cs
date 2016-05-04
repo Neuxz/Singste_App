@@ -40,11 +40,11 @@ namespace Singste_App
         {
             this.curent = curent;
         }
-        public apiConnector createReader()
+        public static apiConnector createReader()
         {
             return new apiConnector(dm.getDatabase());
         }
-        public apiConnector createReader(string qrResult)
+        public static apiConnector createReader(string qrResult)
         {
 
             string[] signs = qrResult.Split(';');
@@ -68,7 +68,6 @@ namespace Singste_App
             try
             {
                 System.Threading.Tasks.Task<string> resi = getStringResponse((HttpWebRequest)WebRequest.Create("http://" + curent.usrCH + api + curent.phrase));
-                resi.Start();
                 resi.Wait();
                 returner = bool.Parse(resi.Result);
             }
@@ -80,7 +79,7 @@ namespace Singste_App
         public string Anmelden(bool anmelden,string trmIF, out bool anmeldung)
         {
             System.Threading.Tasks.Task < string > resi = getStringResponse((HttpWebRequest)WebRequest.Create("http://" + curent.usrCH + api + curent.phrase + apiTrmIDIS + trmIF + apiAnAbML + (anmelden?apiAnML:apiAbML)));
-            resi.Start();
+
             resi.Wait();
             string result = resi.Result;
 
@@ -129,7 +128,6 @@ namespace Singste_App
         public List<Appointment> getTermine(string trmId)
         {
             System.Threading.Tasks.Task<List<Appointment>> lisi = LoadTermine((HttpWebRequest)WebRequest.Create("http://" + curent.usrCH + api + curent.phrase + apiTrmIDIS + trmId));
-            lisi.Start();
             lisi.Wait();
             return lisi.Result;
         }

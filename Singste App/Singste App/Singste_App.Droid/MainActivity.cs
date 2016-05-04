@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Singste_App;
 using Android.App;
 using Android.Content;
 using Android.Runtime;
@@ -25,7 +25,7 @@ namespace Singste_App.Droid
                 {
                     if (FindViewById<EditText>(Resource.Id.editText1).Text != String.Empty)
                     {
-                        apiConnector ar = apiConnector.createReader(FindViewById<EditText>(Resource.Id.editText1).Text + ";cancarmina.de", this);
+                        apiConnector ar = apiConnector.createReader(FindViewById<EditText>(Resource.Id.editText1).Text + ";cancarmina.de");
                         if (ar.CheckLogIN())
                         {
                             Intent newMain = new Intent(this, typeof(MainMenu));
