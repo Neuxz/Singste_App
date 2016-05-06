@@ -28,12 +28,20 @@ namespace Singste_App
             }
         }
 
+        public static DriveManagement DatabaseController
+        {
+            set
+            {
+                dm = value;
+            }
+        }
+
+        /// <summary>
+        /// Create Setter for Drive man
+        /// </summary>
         //Create help[]
         private apiConnector()
         {
-#if __ANDROID__
-            dm = DriveManagement();
-#endif
             curent = new User();
         }
         private apiConnector(User curent)
@@ -46,17 +54,20 @@ namespace Singste_App
         }
         public static apiConnector createReader(string qrResult)
         {
-
-            string[] signs = qrResult.Split(';');
-            User temp = new User(signs[0], signs[1]);
-            apiConnector apiConn = new apiConnector();
-            if (!dm.createDatabase(temp))
+            apiConnector apiConn = null;
+            if (dm != null)
             {
-                apiConn.curent = temp;
-            }
-            else
-            {
-                apiConn.curent = dm.getDatabase();
+                string[] signs = qrResult.Split(';');
+                User temp = new User(signs[0], signs[1]);
+                apiConn = new apiConnector();
+                if (!dm.createDatabase(temp))
+                {
+                    apiConn.curent = temp;
+                }
+                else
+                {
+                    apiConn.curent = dm.getDatabase();
+                }
             }
             return apiConn;
         }
@@ -107,7 +118,7 @@ namespace Singste_App
         {
             try
             {
-                using (WebResponse response = await wq.GetResponseAsync())
+                using (WebResponse response = await wq.GetResponseAsync().ConfigureAwait(false))
                 {
                     using (System.IO.StreamReader reader = new System.IO.StreamReader(response.GetResponseStream()))
                     {
@@ -135,7 +146,7 @@ namespace Singste_App
         {
             //List<Termine> terminListe = new List<Termine>();
             List<Appointment> Resu = null;
-            using (WebResponse response = await myRequest.GetResponseAsync())
+            using (WebResponse response = await myRequest.GetResponseAsync().ConfigureAwait(false))
             {
                 using (System.IO.StreamReader reader = new System.IO.StreamReader(response.GetResponseStream()))
                 {

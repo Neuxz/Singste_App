@@ -15,6 +15,7 @@ namespace Singste_App.Droid
 
         protected override void OnCreate(Bundle bundle)
         {
+            apiConnector.DatabaseController = new DriveManagementAndroid();
             base.OnCreate(bundle);
             if (!apiConnector.UserExists)
             {
@@ -37,10 +38,7 @@ namespace Singste_App.Droid
                         new AlertDialog.Builder(this).SetNeutralButton("Ok", delegate { }).SetMessage("Bitte geben sie ihren Benutzercode ein.").SetTitle("Kein Benutzer code.").Show();
                     }
                 };
-                FindViewById<Button>(Resource.Id.button1).Click += delegate
-                {
-                    new AlertDialog.Builder(this).SetNeutralButton("Ok", delegate { }).SetMessage("Not Implemented yet!").SetTitle("Debug Error").Show();
-                };
+                FindViewById<Button>(Resource.Id.button1).Click += QRToggel;
             }
             else
             {
@@ -50,7 +48,10 @@ namespace Singste_App.Droid
             }
         }
 
-
+        private void QRToggel(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

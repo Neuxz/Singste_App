@@ -12,7 +12,7 @@ namespace Singste_App
     {
         private static string dbName = "Temp.cach";
         private static string databasePath = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.ToString(), dbName);
-        public static new bool createDatabase(User current, Context ct)
+        public override bool createDatabase(User current)
         {
             bool retur = getDatabase().phrase == null;
             if (retur)
@@ -38,7 +38,7 @@ namespace Singste_App
             return retur;
         }
 
-        public static User getDatabase()
+        public override User getDatabase()
         {
             User result = new User();
             using (SqliteConnection co = new SqliteConnection("Data Source=" + databasePath))
