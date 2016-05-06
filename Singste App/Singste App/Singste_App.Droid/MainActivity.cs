@@ -50,6 +50,7 @@ namespace Singste_App.Droid
 
         private void QRToggel(object sender, EventArgs e)
         {
+
             throw new NotImplementedException();
         }
     }

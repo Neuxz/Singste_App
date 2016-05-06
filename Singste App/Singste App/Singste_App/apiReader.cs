@@ -132,9 +132,11 @@ namespace Singste_App
             }
         }
         //Handle Async in *Form* and add method to handle async response like: task.ContinueWith(x => Console.WriteLine(x.Result));
-        public System.Threading.Tasks.Task<List<Appointment>> getTermine()
+        public List<Appointment> getTermine()
         {
-            return LoadTermine((HttpWebRequest)WebRequest.Create("http://" + curent.usrCH + api + curent.phrase + apiTrmIDIS + "alle"));
+            System.Threading.Tasks.Task<List<Appointment>> lisi = LoadTermine((HttpWebRequest)WebRequest.Create("http://" + curent.usrCH + api + curent.phrase + apiTrmIDIS + "alle"));
+            lisi.Wait();
+            return lisi.Result;
         }
         public List<Appointment> getTermine(string trmId)
         {

@@ -16,20 +16,13 @@ namespace Singste_App.Droid
     {
         private List<Appointment> termine;
         private Context context;
-        private MainMenu mainMenu;
-        private Task<List<Appointment>> task;
-
+        //private MainMenu mainMenu;
         public Termin_Adapter(Context context, List<Appointment> termine)
         {
             this.context = context;
             this.termine = termine;
         }
 
-        public Termin_Adapter(MainMenu mainMenu, Task<List<Appointment>> task)
-        {
-            this.mainMenu = mainMenu;
-            this.task = task;
-        }
 
         public override Appointment this[int position]
         {
