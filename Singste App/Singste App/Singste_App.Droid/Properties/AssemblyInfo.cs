@@ -5,7 +5,7 @@ using Android.App;
 // Information about this assembly is defined by the following attributes.
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle ("Singste_App.Droid")]
+[assembly: AssemblyTitle ("de.neuxzdev.singste")]
 [assembly: AssemblyDescription ("")]
 [assembly: AssemblyConfiguration ("")]
 [assembly: AssemblyCompany ("")]
@@ -20,9 +20,11 @@ using Android.App;
 
 [assembly: AssemblyVersion ("1.0.0")]
 
+[assembly: Application(Debuggable=false)]
+//de.Singste_App.Droid
 // The following attributes are used to specify the signing key for the assembly,
 // if desired. See the Mono documentation for more information about signing.
 
 //[assembly: AssemblyDelaySign(false)]
-//[assembly: AssemblyKeyFile("")]
+//[assembly: AssemblyKeyFile("C:\\Users\\Benedikt\\Documents\\GitHubVisualStudio\\KeyStores\\SingsteApp")]
 

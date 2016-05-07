@@ -104,7 +104,7 @@ namespace Singste_App
                 anmeldung = false;
                 return "Du wurdest abgemeldet";
             }
-            else if (result.Contains("Der Termin liegt in der Vergangenheit. Keine Änderungen mehr möglich."))
+            else if (result.Contains("Keine Änderungen mehr möglich."))
             {
                 anmeldung = true;
                 return "Änderung nicht Möglich!";
