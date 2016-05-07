@@ -4,5 +4,5 @@
 	<string name="app_name">Singste_App.Droid</string>
   <string name="SIGNIN">Einloggen</string>
   <string name="SignIN">Einloggen</string>
-  <string name="QR">QR Scanner</string>
+  <string name="QR">QR Login</string>
 </resources>

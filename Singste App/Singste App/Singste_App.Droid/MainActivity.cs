@@ -22,22 +22,7 @@ namespace Singste_App.Droid
 
                 // Set our view from the "main" layout resourcelay
                 SetContentView(Resource.Layout.Main);
-                FindViewById<Button>(Resource.Id.MyButton).Click += delegate
-                {
-                    if (FindViewById<EditText>(Resource.Id.editText1).Text != String.Empty)
-                    {
-                        apiConnector ar = apiConnector.createReader(FindViewById<EditText>(Resource.Id.editText1).Text + ";cancarmina.de");
-                        if (ar.CheckLogIN())
-                        {
-                            Intent newMain = new Intent(this, typeof(MainMenu));
-                            StartActivity(newMain);
-                        }
-                    }
-                    else
-                    {
-                        new AlertDialog.Builder(this).SetNeutralButton("Ok", delegate { }).SetMessage("Bitte geben sie ihren Benutzercode ein.").SetTitle("Kein Benutzer code.").Show();
-                    }
-                };
+                
                 FindViewById<Button>(Resource.Id.button1).Click += QRToggel;
             }
             else
@@ -48,10 +33,20 @@ namespace Singste_App.Droid
             }
         }
 
-        private void QRToggel(object sender, EventArgs e)
+        private async void QRToggel(object sender, EventArgs e)
         {
-
-            throw new NotImplementedException();
+            ZXing.Mobile.MobileBarcodeScanner tkd = new ZXing.Mobile.MobileBarcodeScanner();
+            ZXing.Result rs = await tkd.Scan();
+            if(rs != null)
+            {
+                apiConnector ar = apiConnector.createReader(rs.Text);
+                if (ar.CheckLogIN())
+                {
+                    Intent newMain = new Intent(this, typeof(MainMenu));
+                    StartActivity(newMain);
+                    Finish();
+                }
+            }
         }
     }
 }

@@ -43,11 +43,12 @@ namespace Singste_App
             User result = new User();
             using (SqliteConnection co = new SqliteConnection("Data Source=" + databasePath))
                 {
+                try
+                {
                 co.Open();
                 SqliteCommand cmd = co.CreateCommand();
                 cmd.CommandText = "Select * From User";
-                try
-                {
+
                     SqliteDataReader read = cmd.ExecuteReader();
                     if(read.Read())
                     {

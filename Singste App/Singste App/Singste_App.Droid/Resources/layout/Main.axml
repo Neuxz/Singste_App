@@ -2,21 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText1" />
-    <Button
-        android:id="@+id/MyButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/SignIN" />
+    android:layout_height="fill_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
     <Button
         android:text="@string/QR"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="171.5dp"
         android:id="@+id/button1"
-        android:layout_marginLeft="105.0dp"
-        android:layout_marginRight="105.0dp" />
+        android:layout_marginLeft="0.0dp"
+        android:layout_marginRight="0.0dp"
+        android:layout_marginBottom="174.5dp"
+        android:textSize="@android:dimen/app_icon_size" />
 </LinearLayout>
