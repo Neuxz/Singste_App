@@ -21,9 +21,9 @@ namespace Singste_App
                 {
                     co.Open();
                     SqliteCommand cmd = co.CreateCommand();//   .CreateCommand();
-                    cmd.CommandText = "CREATE TABLE User (	`ID`	TEXT,	`Name`	TEXT,	`Chor`	TEXT, `Delay` INTEGER, `Appointments`	BLOB)";
+                    cmd.CommandText = "CREATE TABLE IF NOT EXISTS User (	`ID`	TEXT,	`Name`	TEXT,	`Chor`	TEXT, `Delay` INTEGER, `Appointments`	BLOB)";
                     cmd.ExecuteNonQuery();
-                    cmd.CommandText = "Insert into User (ID,Name, Chor, Appointments) values(@id, @name, @chor, @delay, @appoi)";
+                    cmd.CommandText = "Insert into User (ID,Name, Chor, Delay, Appointments) values(@id, @name, @chor, @delay, @appoi)";
                     List<SqliteParameter> sqlisat = new List<SqliteParameter>() {
                     new SqliteParameter("@id", current.usrID),
                     new SqliteParameter("@name", current.phrase),
