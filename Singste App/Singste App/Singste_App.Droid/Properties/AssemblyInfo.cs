@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using Android.App;
 
 // Information about this assembly is defined by the following attributes.
-// Change them to the values specific to your project.
+// Change them to the values specific to your project.//https://play.google.com/apps/testing/de.neuxzdev.singste
 
 [assembly: AssemblyTitle ("de.neuxzdev.singste")]
 [assembly: AssemblyDescription ("")]
@@ -18,7 +18,7 @@ using Android.App;
 // The form "{Major}.{Minor}.*" will automatically update the build and revision,
 // and "{Major}.{Minor}.{Build}.*" will update just the revision.
 
-[assembly: AssemblyVersion ("1.0.0")]
+[assembly: AssemblyVersion ("2.0.0")]
 
 [assembly: Application(Debuggable=false)]
 //de.Singste_App.Droid
