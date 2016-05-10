@@ -11,6 +11,10 @@ namespace Singste_App
         {
             return false;
         }
+        public virtual List<User> getDatabaseList()
+        {
+            return null;
+        }
         public virtual User getDatabase()
         {
             return null;

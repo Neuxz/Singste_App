@@ -24,7 +24,15 @@ namespace Singste_App
         {
             get
             {
-                return (dm.getDatabase().phrase != null) ;
+                return (dm.getDatabase().phrase != null);
+            }
+        }
+
+        public static bool MultipleUsers
+        {
+            get
+            {
+                return (dm.getDatabaseList().Count > 1);
             }
         }
 
@@ -42,7 +50,7 @@ namespace Singste_App
         //Create help[]
         private apiConnector()
         {
-            curent = new User();
+            curent = User.getUser();
         }
         private apiConnector(User curent)
         {
@@ -58,7 +66,7 @@ namespace Singste_App
             if (dm != null)
             {
                 string[] signs = qrResult.Split(';');
-                User temp = new User(signs[0], signs[1]);
+                User temp = User.getUser(signs[0], signs[1]);
                 apiConn = new apiConnector();
                 if (!dm.createDatabase(temp))
                 {

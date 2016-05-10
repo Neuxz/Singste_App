@@ -4,7 +4,7 @@ using Android.Content;
 using System.IO;
 using Mono.Data.Sqlite;
 using Singste_App;
-//using System.Data.SqlClient;
+using Singste_App.Droid;
 
 namespace Singste_App
 {
@@ -38,34 +38,63 @@ namespace Singste_App
             return retur;
         }
 
-        public override User getDatabase()
+        public override List<User> getDatabaseList()
         {
-            User result = new User();
+            List<User> result = new List<User>();
             using (SqliteConnection co = new SqliteConnection("Data Source=" + databasePath))
-                {
+            {
                 try
                 {
-                co.Open();
-                SqliteCommand cmd = co.CreateCommand();
-                cmd.CommandText = "Select * From User";
-
+                    co.Open();
+                    SqliteCommand cmd = co.CreateCommand();
+                    cmd.CommandText = "Select * From User";
                     SqliteDataReader read = cmd.ExecuteReader();
-                    if(read.Read())
+                    while (read.Read())
                     {
-
-                        try { result.usrID = (string)read["ID"]; } catch { result.usrID = ""; }
-                        try { result.phrase = (string)read["Name"]; } catch { throw new Exception("NO Passphrase"); }
-                        try { result.usrCH = (string)read["Chor"]; } catch { result.usrCH = ""; }
-                        try { result.delay = (int)read["Delay"]; } catch { result.delay = 5000; }
-                        try { result.storage = (List<Appointment>)read["Appointments"]; } catch { }
+                        User temp = User.getEmptyUser();
+                        try { temp.usrID = (string)read["ID"]; } catch { temp.usrID = ""; }
+                        try { temp.phrase = (string)read["Name"]; } catch { throw new Exception("NO Passphrase"); }
+                        try { temp.usrCH = (string)read["Chor"]; } catch { temp.usrCH = ""; }
+                        try { temp.delay = (int)read["Delay"]; } catch { temp.delay = 5000; }
+                        try { temp.storage = (List<Appointment>)read["Appointments"]; } catch { }
+                        result.Add(temp);
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.Write(ex);
                 }
             }
             return result;
+        }
+        public override User getDatabase()
+        {
+            List<User> result = new List<User>();
+            using (SqliteConnection co = new SqliteConnection("Data Source=" + databasePath))
+            {
+                try
+                {
+                    co.Open();
+                    SqliteCommand cmd = co.CreateCommand();
+                    cmd.CommandText = "Select * From User";
+                    SqliteDataReader read = cmd.ExecuteReader();
+                    while (read.Read())
+                    {
+                        User temp = User.getEmptyUser();
+                        try { temp.usrID = (string)read["ID"]; } catch { temp.usrID = ""; }
+                        try { temp.phrase = (string)read["Name"]; } catch { throw new Exception("NO Passphrase"); }
+                        try { temp.usrCH = (string)read["Chor"]; } catch { temp.usrCH = ""; }
+                        try { temp.delay = (int)read["Delay"]; } catch { temp.delay = 5000; }
+                        try { temp.storage = (List<Appointment>)read["Appointments"]; } catch { }
+                        result.Add(temp);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex);
+                }
+            }
+            return result[0];
         }
     }
 }

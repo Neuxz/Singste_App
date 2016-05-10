@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:orientation="vertical"
+    p1:layout_width="match_parent"
+    p1:layout_height="match_parent"
+    p1:id="@+id/linearLayout1">
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:layout_width="fill_parent"
+        p1:layout_height="fill_parent"
+        p1:minWidth="30px"
+        p1:minHeight="30px"
+        p1:paddingLeft="5dp"
+        p1:paddingTop="2dp"
+        p1:paddingBottom="2dp"
+        p1:weightSum="100"
+        p1:id="@+id/linearLayout3">
+        <ImageView
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:layout_width="80.0dp"
+            p1:layout_height="80.0dp"
+            p1:id="@+id/imageView1"
+            p1:layout_marginBottom="0.0dp" />
+        <LinearLayout
+            p1:orientation="vertical"
+            p1:layout_width="match_parent"
+            p1:layout_height="80.0dp"
+            p1:id="@+id/linearLayout4"
+            p1:layout_marginRight="1.0dp">
+            <TextureView
+                p1:layout_width="wrap_content"
+                p1:layout_height="40.0dp"
+                p1:id="@+id/textureView1" />
+            <TextureView
+                p1:layout_width="wrap_content"
+                p1:layout_height="40.0dp"
+                p1:id="@+id/textureView1" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

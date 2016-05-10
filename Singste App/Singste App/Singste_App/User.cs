@@ -12,12 +12,43 @@ namespace Singste_App
         public string phrase;
         public int delay;
         public List<Appointment> storage = new List<Appointment>();
-        public User() { }
-        public User(string phrase, string chr)
+        private static User us;
+        private User() { }
+        private User(string phrase, string chr)
         {
             this.phrase = phrase;
             this.usrCH = chr;
 
+        }
+
+        public static User getEmptyUser()
+        {
+            return new User();
+        }
+
+        public static User getUser()
+        {
+            if (us == null)
+            {
+                us = new User();
+                return us;
+            }
+            return us;
+        }
+
+        public void setUser(User newuser)
+        {
+            us = newuser;
+        }
+
+        public static User getUser(string phrase, string chr)
+        {
+            if(us == null)
+            {
+                us = new User(phrase, chr);
+                return us;
+            }
+            return us;
         }
         public void updateLocalTerminlist(List<Appointment> newList)
         {
