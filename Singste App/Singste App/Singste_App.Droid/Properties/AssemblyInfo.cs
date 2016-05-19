@@ -20,7 +20,7 @@ using Android.App;
 
 [assembly: AssemblyVersion ("2.0.0")]
 
-[assembly: Application(Debuggable=false)]
+[assembly: Application(Debuggable=true)]
 //de.Singste_App.Droid
 // The following attributes are used to specify the signing key for the assembly,
 // if desired. See the Mono documentation for more information about signing.

@@ -65,7 +65,7 @@ namespace SingsteApp
 
         public override User getDatabase()
         {
-            User result = new User();
+            User result = User.getUser();
             using (SqliteConnection co = new SqliteConnection("Data Source=" + databasePath))
             {
                 co.Open();

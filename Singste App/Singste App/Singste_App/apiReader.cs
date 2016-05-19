@@ -101,23 +101,25 @@ namespace Singste_App
 
             resi.Wait();
             string result = resi.Result;
-
-            if (result.Contains("Neuer Status: angemeldet. Danke!"))
+            if (result != null)
             {
-                anmeldung = true;
-                return "Du wurdest angemeldet";
+                if (result.Contains("Neuer Status: angemeldet. Danke!"))
+                {
+                    anmeldung = true;
+                    return "Du wurdest angemeldet";
+                }
+                else if (result.Contains("Neuer Status: abgemeldet. Danke!"))
+                {
+                    anmeldung = false;
+                    return "Du wurdest abgemeldet";
+                }
+                else if (result.Contains("Keine Änderungen mehr möglich."))
+                {
+                    anmeldung = false;
+                    return "Änderung nicht Möglich!";
+                }
             }
-            else if (result.Contains("Neuer Status: abgemeldet. Danke!"))
-            {
-                anmeldung = false;
-                return "Du wurdest abgemeldet";
-            }
-            else if (result.Contains("Keine Änderungen mehr möglich."))
-            {
-                anmeldung = true;
-                return "Änderung nicht Möglich!";
-            }
-            anmeldung = true;
+            anmeldung = false;
             return "Netzwerk fehler.";
                 
                     
@@ -128,9 +130,9 @@ namespace Singste_App
             {
                 using (WebResponse response = await wq.GetResponseAsync().ConfigureAwait(false))
                 {
-                    using (System.IO.StreamReader reader = new System.IO.StreamReader(response.GetResponseStream()))
+                    using (System.IO.StreamReader reader = new System.IO.StreamReader(response.GetResponseStream(),System.Text.Encoding.UTF8))
                     {
-                        return reader.ReadToEnd();
+                        return WebUtility.HtmlDecode(reader.ReadToEnd());
                     }
                 }
             }
@@ -160,7 +162,7 @@ namespace Singste_App
             {
                 using (System.IO.StreamReader reader = new System.IO.StreamReader(response.GetResponseStream()))
                 {
-                    Resu = Appointment.CreateAppointmentList(ParseJson.JsonArrayToDictionaryList(reader.ReadToEnd()));
+                    Resu = Appointment.CreateAppointmentList(ParseJson.JsonArrayToDictionaryList(WebUtility.HtmlDecode(reader.ReadToEnd())));
 
                 }
             }
