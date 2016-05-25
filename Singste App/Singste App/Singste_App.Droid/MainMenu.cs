@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace Singste_App.Droid
 {
-    [Activity(Label = "Termin Übersicht")]
+    [Activity(Label = "Singste App", MainLauncher = true, Icon = "@drawable/Menuecon")]
     public class MainMenu : Activity
     {
         ListView lv;

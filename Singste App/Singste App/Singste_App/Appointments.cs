@@ -24,7 +24,7 @@ namespace Singste_App
         private int trm_instatistik;
         private string trm_id;
         private bool trm_angemeldet;
-
+        private 
         #region gettter
         public AppointmentType Type
         {

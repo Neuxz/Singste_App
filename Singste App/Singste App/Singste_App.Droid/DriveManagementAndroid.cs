@@ -24,21 +24,20 @@ namespace Singste_App
                     cmd.CommandText = "CREATE TABLE IF NOT EXISTS User (	`ID`	TEXT,	`Name`	TEXT,	`Chor`	TEXT, `Delay` INTEGER, `Appointments`	BLOB)";
                     cmd.ExecuteNonQuery();
                     cmd.CommandText = "Insert into User (ID,Name, Chor, Delay, Appointments) values(@id, @name, @chor, @delay, @appoi)";
-                    List<SqliteParameter> sqlisat = new List<SqliteParameter>() {
+                    new List<SqliteParameter>() {
                     new SqliteParameter("@id", current.usrID),
                     new SqliteParameter("@name", current.phrase),
                     new SqliteParameter("@chor", current.usrCH),
                     new SqliteParameter("@delay", current.delay),
                     new SqliteParameter("@appoi", current.storage)
-                    };
-                    sqlisat.ForEach(cmdPam => cmd.Parameters.Add(cmdPam));
+                    }.ForEach(cmdPam => cmd.Parameters.Add(cmdPam));
                     cmd.ExecuteNonQuery();
                 }
             }
             return retur;
         }
 
-        public override List<User> getDatabaseList()
+        public override List<User> getDatabaseList()  
         {
             List<User> result = new List<User>();
             using (SqliteConnection co = new SqliteConnection("Data Source=" + databasePath))

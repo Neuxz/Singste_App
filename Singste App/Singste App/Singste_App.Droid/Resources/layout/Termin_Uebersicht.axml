@@ -24,16 +24,17 @@
         p1:id="@+id/linearLayout3">
         <EditText
             p1:layout_width="match_parent"
-            p1:layout_weight="50"
+            p1:layout_weight="25"
             p1:layout_height="wrap_content"
             p1:id="@+id/terminDatum"
-            p1:enabled="false" />
+            p1:editable="false" />
         <EditText
             p1:layout_width="match_parent"
-            p1:layout_weight="50"
+            p1:layout_weight="75"
             p1:layout_height="wrap_content"
             p1:id="@+id/terminZeit"
-            p1:enabled="false" />
+            p1:editable="false"
+            p1:layout_marginLeft="0.0dp" />
     </LinearLayout>
     <CheckBox
         p1:text="Angemeldet"

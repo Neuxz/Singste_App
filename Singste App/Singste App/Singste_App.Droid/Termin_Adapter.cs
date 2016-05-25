@@ -59,6 +59,7 @@ namespace Singste_App.Droid
             row.FindViewById<TextView>(Resource.Id.terminDatum).Text = termine[position].Trm_Datum.ToLongDateString();
             row.FindViewById<TextView>(Resource.Id.terminZeit).Text = termine[position].Trm_zeitanfang.TimeOfDay.Hours.ToString("00") + ":" + termine[position].Trm_zeitanfang.TimeOfDay.Minutes.ToString("00");
             row.FindViewById<CheckBox>(Resource.Id.anmStatus).Checked = termine[position].Trm_angemeldet;
+            //row.FindViewById<CheckBox>(Resource.Id.anmStatus).SetBackgroundColor(Android.Graphics.Color.) Set color
             row.FindViewById<CheckBox>(Resource.Id.anmStatus).Click += Anmelde_Status_Click;
             row.Click += Row_Click;
             return row;
